@@ -1,0 +1,86 @@
+
+# Database Table Management
+
+This module provides a function to create the `client` table in a SQLite database if it does not already exist.
+
+## Functions
+
+### `createClientTable`
+
+Creates the `client` table in the database.
+
+1. Executes a SQL command to create the `client` table if it does not already exist.
+2. The table schema includes:
+   - `id`: An integer primary key that auto-increments.
+   - `first_name`: A non-null text field for the client's first name.
+   - `last_name`: A non-null text field for the client's last name.
+3. Logs a message indicating whether the table was created or already exists.
+4. Handles any errors that occur during the table creation.
+
+
+
+
+## Notes
+
+- The `CREATE TABLE IF NOT EXISTS` statement ensures that the table is created only if it does not already exist, avoiding errors if the table is already present.
+- The `id` column is set as the primary key and will auto-increment with each new record.
+
+
+
+
+Here's the documentation for the code that creates the `contract` table in the SQLite database:
+
+---
+
+
+
+# Database Table Management
+
+This module provides a function to create the `contract` table in a SQLite database if it does not already exist.
+
+## Functions
+
+### `createContractTable`
+
+Creates the `contract` table in the database.
+
+1. Executes a SQL command to create the `contract` table if it does not already exist.
+2. The table schema includes:
+   - `contract_id`: An integer primary key that auto-increments.
+   - `object`: A text field describing the contract object.
+   - `date`: A text field representing the contract date.
+   - `village`: A text field for the village associated with the contract.
+   - `client_id`: An integer field linking to the `client` table’s `id` as a foreign key.
+   - `subject`: A text field for the contract subject.
+   - `phone_number`: A text field for the phone number associated with the contract.
+   - `fiscal_code`: A text field for the fiscal code.
+   - `file_url`: A non-null text field storing the URL of the file associated with the contract.
+   - `email`: A non-null text field for the email associated with the contract.
+3. Logs a message indicating whether the table was created or already exists.
+4. Handles any errors that occur during the table creation.
+
+## SQL Statement Used
+
+```sql
+CREATE TABLE IF NOT EXISTS contract (
+  contract_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  object TEXT,
+  date TEXT,
+  village TEXT,
+  client_id INTEGER,
+  subject TEXT,
+  phone_number TEXT,
+  fiscal_code TEXT,
+  file_url TEXT NOT NULL,  
+  email TEXT NOT NULL,
+  FOREIGN KEY(client_id) REFERENCES client(id)
+);
+```
+
+
+
+## Notes
+
+- The `CREATE TABLE IF NOT EXISTS` statement ensures that the table is created only if it does not already exist, preventing errors if the table is already present.
+- `contract_id` serves as the primary key and auto-increments with each new record.
+- `client_id` is a foreign key that references the `id` column in the `client` table, establishing a relationship between the contract and client.

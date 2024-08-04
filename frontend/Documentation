@@ -1,0 +1,122 @@
+Here’s a structured documentation for the `ClientFormModal` React component:
+
+---
+
+## **ClientFormModal Component**
+
+**Overview**:
+`ClientFormModal` is a modal dialog used for adding a new client. It includes fields for entering the client's first name and last name, and supports file uploads for client-related documents. The modal provides options to submit the form, try a template, or preview the uploaded file.
+
+**Props**:
+
+- `onClose` (Function): Callback function to be called when the modal is closed.
+- `onAddClient` (Function): Callback function to refresh the client list after adding a new client.
+- `onTryTemplate` (Function): Callback function to handle the action for trying a template.
+
+**State**:
+
+- `firstName` (String): The client's first name.
+- `lastName` (String): The client's last name.
+- `file` (File | null): The selected file to be uploaded.
+- `fileUrl` (String): The URL of the selected file for preview purposes.
+
+**Methods**:
+
+- `handleFileChange(event)`: Updates the `file` state with the selected file and sets `fileUrl` for preview.
+- `handleDrop(event)`: Handles file drop events, updates the `file` state, and sets `fileUrl`.
+- `handleSubmit(event)`: Submits the form data including the file to the backend and triggers `onAddClient` and `onClose`.
+- `handlePreview()`: Opens a Google Docs Viewer to preview the uploaded document.
+
+**Styles**:
+
+- **modal-overlay**: Covers the entire screen with a semi-transparent background.
+- **modal-content**: Contains the modal content and styling.
+- **container**: A flex container with two sides.
+- **left-side**: Contains the form for entering client details.
+- **right-side**: Contains the file upload area.
+- **upload-area**: Handles file drop and file selection.
+- **upload-icon**: Icon indicating file upload.
+- **preview-button**: Button for previewing the uploaded document.
+
+**Notes**:
+
+- Ensure that the file input accepts only specific formats (`.pdf`, `.doc`, `.docx`).
+- `fileUrl` is used for previewing the file through Google Docs Viewer.
+
+Your `ClientTable` component looks well-structured and includes a range of functionalities for managing and displaying client data. Here’s a summary of the key aspects and some potential improvements:
+
+## **ClientTable Component**
+
+1. **State Management:**
+
+   - `clients`: Holds the list of clients fetched from the backend.
+   - `loading`: Indicates whether the data is being loaded.
+   - `showModal`: Controls the visibility of the `ClientFormModal`.
+   - `searchTerm`: Manages the search input for filtering clients by name.
+   - `sortOption`: Controls the sorting of clients based on different criteria.
+   - `dateRange`: Manages the date range for filtering contracts.
+   - `filteredClients`: Stores the filtered and sorted list of clients.
+
+2. **Effect Hooks:**
+
+   - `useEffect` to fetch clients when the component mounts.
+   - `useEffect` to apply filters and sorting whenever `clients`, `searchTerm`, `sortOption`, or `dateRange` changes.
+
+3. **Handlers:**
+
+   - `fetchClients`: Fetches client data from the backend.
+   - `applyFilters`: Applies filtering and sorting to the client data.
+   - `handleDelete`: Deletes a client and refreshes the client list.
+   - `previewContract`: Opens a preview of the contract file using Google Docs Viewer.
+
+4. **Modal Integration:**
+
+   - Shows the `ClientFormModal` when `showModal` is `true`.
+     Your updated `ContractCreation` component looks good! Here are a few enhancements and suggestions you might consider:
+
+---
+
+\*\*Tabs Component Documentation
+Overview
+The Tabs component manages the display of two tabs in the application:
+
+Clients Tab: Displays the ClientTable component.
+Create Contract Tab: Displays the ContractCreation component.
+The component uses internal state to track which tab is currently active and provides functionality to switch between tabs.
+
+State
+activeTab (string): Tracks the currently active tab. Possible values are "clients" and "contracts".
+Handlers
+handleTabChange(tab: string): Updates the activeTab state to the specified tab ("clients" or "contracts").
+Rendered Output
+Navigation: Contains two buttons for switching tabs. The button corresponding to the activeTab is highlighted with an "active" class.
+Content: Displays the content of the active tab:
+"clients": Renders the ClientTable component. The onTryTemplate prop is passed to allow switching to the "Create Contract" tab when triggered.
+"contracts": Renders the ContractCreation component.
+
+ContractCreation Component Documentation
+Overview
+The ContractCreation component provides a form for users to create a contract. The form includes fields for basic contract details, the subject of the contract, and footer information. It handles form input changes and submission, sending the data to a backend server.
+
+State
+contractDetails (object): Tracks the values of the form fields. Initialized with empty strings for each field:
+objet (string)
+date (string)
+ville (string)
+nomDuClient (string)
+prenomDuClient (string)
+sujet (string)
+adresseMail (string)
+numDeTel (string)
+codeFiscal (string)
+Handlers
+handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): Updates the contractDetails state based on user input. It extracts the name and value from the event target and updates the corresponding field in the state.
+
+handleSubmit(e: React.FormEvent<HTMLFormElement>): Handles form submission. Prevents the default form behavior, then sends a POST request with the form data to the backend server (http://localhost:3000/contract). If the response is not OK, it throws an error.
+
+Rendered Output
+Form Structure:
+Basic Data Section: Includes fields for objet, date, ville, nomDuClient, and prenomDuClient.
+Subject Section: Includes a textarea for sujet.
+Footer Section: Includes fields for adresseMail, numDeTel, and codeFiscal.
+Submit Button: Submits the form data to the backend server.

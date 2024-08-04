@@ -1,0 +1,220 @@
+.client-table-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f0f0f0;
+}
+
+.client-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-container {
+  flex: 1; /* This makes it take remaining space */
+}
+
+.search-box {
+  width: 250px; /* Your preferred width */
+  max-width: 35%; /* This will limit the width if space is limited */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.actions-container {
+  display: flex;
+  gap: 10px;
+}
+
+.container {
+  z-index: 3;
+}
+
+.add-client-btn {
+  padding: 7px;
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  height: 55px;
+  border-radius: 100%;
+}
+
+.filter-btn {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: #f0f0f0;
+}
+
+.filter-dropdown {
+  position: fixed;
+  display: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  top: 32%; /* Adjust based on your layout */
+  right: 21%; /* Adjust based on your layout */
+  z-index: 1000;
+}
+
+.filter-dropdown.show {
+  display: block;
+}
+
+.filter-dropdown > .filter-option:last-child {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap onto multiple lines */
+  gap: 16px; /* Space between form elements */
+  padding: 20px; /* Padding around the component */
+  background-color: #f9f9f9; /* Background color for the filter options */
+  border: 1px solid #ddd; /* Border around the component */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.components {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 16px; /* Gap between items */
+  padding: 20px; /* Padding around the grid */
+  justify-content: center;
+  transform: translate(8%, -3%);
+}
+.date-range-filter {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.date-range-filter input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/*/*********************************************************************************************************/
+.table-container {
+  background-color: white;
+  border: 15px solid #000;
+  border-radius: 20px;
+  z-index: 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  max-height: calc(
+    9 * 53px
+  ); /* 9 rows (8 body + 1 header) * approximate row height */
+  position: relative;
+}
+
+.client-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.client-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: black;
+}
+
+.client-table th {
+  font-weight: 900;
+  color: white;
+  border: 2px solid #000;
+  border-top: none;
+  border-bottom: none;
+  padding: 12px;
+  text-align: left;
+}
+
+.client-table td {
+  border: 2px solid #ddd;
+  padding: 12px;
+}
+
+.client-table tbody {
+  display: block;
+  overflow-y: auto;
+  max-height: calc(8 * 62px); /* 8 body rows * approximate row height */
+}
+
+.client-table thead,
+.client-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.client-table tbody tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.client-table tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+.client-table thead {
+  border-bottom: 8px solid #000;
+}
+
+.client-table th:first-child {
+  border-left: none;
+}
+
+.client-table th:last-child {
+  border-right: none;
+}
+
+/* Customizing the scrollbar */
+.client-table tbody::-webkit-scrollbar {
+  width: 10px;
+}
+
+.client-table tbody::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0 0 20px 0;
+}
+
+.client-table tbody::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+.client-table tbody::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 767px) {
+  .table-container {
+    border-width: 10px;
+    border-radius: 15px;
+    max-height: calc(9 * 45px); /* Adjusted for smaller row height on mobile */
+  }
+
+  .client-table th,
+  .client-table td {
+    padding: 8px;
+  }
+
+  .client-table thead {
+    border-bottom-width: 5px;
+  }
+
+  .client-table tbody {
+    max-height: calc(8 * 45px); /* Adjusted for smaller row height on mobile */
+  }
+}

@@ -1,0 +1,102 @@
+
+
+# Client and Contract Management
+
+This module provides functions to manage clients and contracts in a SQLite database. It includes functionality to insert, update, delete clients, and retrieve all clients along with their associated contracts.
+
+## Functions
+
+### `insertClient`
+
+Inserts a new client and a contract associated with the client.
+
+1. Extracts `first_name`, `last_name`, and `file` from the request.
+2. Checks if the file is provided; if not, returns an error.
+3. Begins a transaction.
+4. Inserts the client into the `client` table.
+5. If client insertion is successful, retrieves the newly inserted client's ID.
+6. Inserts a contract associated with the new client into the `contract` table.
+7. Commits the transaction if both insertions are successful.
+8. Rolls back the transaction if any error occurs during the process.
+
+### `getAllClients`
+
+Retrieves all clients and their associated contracts.
+
+1. Executes a SQL query to select all clients and their associated contracts using a left join.
+2. Returns the resulting rows.
+
+### `updateClient`
+
+Updates a client's information.
+
+1. Extracts `id`, `first_name`, and `last_name` from the request.
+2. Begins a transaction.
+3. Updates the client information in the `client` table.
+4. Commits the transaction if the update is successful.
+5. Rolls back the transaction if any error occurs during the update.
+
+### `deleteClient`
+
+Deletes a client and their associated contracts.
+
+1. Extracts `id` from the request parameters.
+2. Begins a transaction.
+3. Deletes contracts associated with the client from the `contract` table.
+4. Deletes the client from the `client` table.
+5. Commits the transaction if both deletions are successful.
+6. Rolls back the transaction if any error occurs during the process.
+
+
+## Transaction Management
+
+- Transactions are used to ensure atomicity in insert, update, and delete operations.
+- Uses `BEGIN TRANSACTION`, `COMMIT`, and `ROLLBACK` to manage transactions.
+
+---
+
+
+
+
+---
+
+# Contract Management
+
+This module provides functions to manage contracts in a SQLite database. It includes functionality to create, retrieve, and update contracts.
+
+## Functions
+
+### `getAllContracts`
+
+Retrieves all contracts.
+
+1. Executes a SQL query to select all contracts.
+2. Returns the resulting rows.
+3. Logs each contract's ID, object, and client ID.
+
+### `getContract`
+
+Retrieves contracts for a specific client.
+
+1. Extracts `client_id` from the request body.
+2. Executes a SQL query to select contracts where `client_id` matches the provided client ID.
+3. Returns the resulting rows.
+
+### `updateContract`
+
+Updates a contract's information.
+
+1. Extracts `object`, `date`, `village`, `client_id`, `subject`, `phone_number`, `fiscal_code`, and `file` from the request body.
+2. Executes a SQL query to update the contract with the provided information.
+3. Logs a success message if the update is successful.
+
+### `createContract`
+
+Creates a new contract.
+
+1. Extracts `object`, `date`, `village`, `client_id`, `subject`, `phone_number`, `fiscal_code`, and `file` from the request body.
+2. Executes a SQL query to insert a new contract with the provided information.
+3. Returns the ID of the newly created contract.
+4. Logs a success message if the creation is successful.
+
+

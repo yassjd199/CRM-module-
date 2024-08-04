@@ -1,0 +1,55 @@
+.contract-creation-container {
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.contract-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ef2d02;
+  border-radius: 8px;
+}
+
+.form-section h2 {
+  margin-top: 0;
+}
+
+.form-section label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-section input,
+.form-section textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #1e1e1e;
+  border-radius: 4px;
+}
+
+.form-section textarea {
+  min-height: 200px; /* Make the textarea taller */
+  font-size: 16px; /* Increase font size */
+  font-weight: bold; /* Make font bold */
+}
+
+.form-section button {
+  background-color: #ef2d02;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.form-section button:hover {
+  background-color: #c5281a;
+}

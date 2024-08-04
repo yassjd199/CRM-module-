@@ -1,0 +1,47 @@
+# Express.js Server Setup
+
+This module sets up an Express.js server with endpoints to manage clients and contracts. It includes file handling with Multer, CORS support, and initializes the database tables.
+
+## Imports
+
+- **express**: Framework for building the server.
+- **db**: Database connection module.
+- **multer**: Middleware for handling file uploads.
+- **cors**: Middleware to enable Cross-Origin Resource Sharing (CORS).
+- **path**: Module for handling file paths.
+
+## Table Creation
+
+- **createClientTable**: Initializes the `client` table in the database.
+- **createContractTable**: Initializes the `contract` table in the database.
+
+## Middleware
+
+- **express.json()**: Parses incoming JSON requests.
+- **express.urlencoded({ extended: true })**: Parses URL-encoded data.
+- **cors()**: Enables CORS for all routes.
+- **express.static**: Serves static files from the `uploads` directory.
+
+## File Upload Handling
+
+- **multer.diskStorage**: Configures Multer to handle file uploads.
+  - **destination**: Sets the directory for storing uploaded files.
+  - **filename**: Preserves the original file extension and appends a timestamp.
+- **upload**: Multer instance configured with the storage settings.
+
+## Routes
+
+- **GET /**: Responds with "hello there".
+- **GET /addclient**: Serves an HTML form for adding clients from the specified file path.
+- **GET /clients**: Fetches all clients using the `getAllClients` controller function.
+- **POST /client**: Inserts a new client into the database using the `insertClient` controller function. Handles file uploads with Multer.
+- **PUT /client**: Updates client information using the `updateClient` controller function.
+- **DELETE /client/:id**: Deletes a client by ID using the `deleteClient` controller function.
+- **GET /contracts**: Fetches all contracts using the `getAllContracts` controller function.
+
+The server will listen on the specified port (`process.env.PORT` or `3000` by default).
+
+## Notes
+
+- **Error Handling**: Basic error handling is implemented in controller functions.
+- **Static File Serving**: Files uploaded to the `uploads` directory can be accessed via the `/uploads` route.
